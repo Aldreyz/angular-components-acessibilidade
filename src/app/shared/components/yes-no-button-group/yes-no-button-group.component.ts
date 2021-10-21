@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import * as uuid from 'uuid'
 @Component({
   selector: 'app-yes-no-button-group',
   templateUrl: './yes-no-button-group.component.html',
@@ -16,11 +17,14 @@ export class YesNoButtonGroupComponent implements OnInit, ControlValueAccessor {
   @Input() public value: string = null;
   @Input() public label = '';
   @Output() public valueChange = new EventEmitter<string>();
+  public id :string =null;
   public options = yesNoButtonGroupOptions;
   public onChange = (value: string) => {};
   public OnTouched = () => {};
 
-  constructor() {}
+  constructor() {
+    this.id = `yes-no-button-group-${uuid.v1()}`;
+  }
 
   ngOnInit(): void {}
 
